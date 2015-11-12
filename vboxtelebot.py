@@ -85,7 +85,8 @@ def send_goodbye(message):
  unique_code = extract_unique_code(message.text)
  cid = message.chat.id # Guardamos el ID de la conversacion para poder responder.
  if cid in cid_list:
-   bot.reply_to(message, "OK, fue un placer servirte jefe..")
+   markup = types.ReplyKeyboardHide(selective=False) #desactivamos el teclado
+   msg = bot.send_message(cid, "Vuelva pronto jefe...! un placer servirle..", reply_markup=markup)
    cid_list.remove(cid)
  else:
    bot.reply_to(message, "No te conozco, presentate con /start y tu password..")
